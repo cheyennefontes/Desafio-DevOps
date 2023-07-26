@@ -24,8 +24,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: .  # O Dockerfile está na raiz do repositório, que é o contexto de build correto
-          dockerfile: php/Dockerfile  # Caminho para o Dockerfile do seu projeto
+          context: .
           push: true
+          file: php/Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/symfony_docker_php:latest
 
