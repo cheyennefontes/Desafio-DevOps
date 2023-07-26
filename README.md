@@ -17,14 +17,14 @@ Antes de começar, certifique-se de atender aos seguintes pré-requisitos:
 
 ## Construir e Executar os Contêineres
 
-- Para construir e executar os contêineres, utilize o seguinte comando:
+Para construir e executar os contêineres, utilize o seguinte comando:
 
 ```bash
 docker-compose up -d
 ```
 ## Criar app Symfony
 
-- Para criar o app Symfony, siga os passos abaixo:
+Para criar o app Symfony, siga os passos abaixo:
 
 1. Execute o seguinte comando para acessar o contêiner:
 
@@ -38,26 +38,37 @@ symfony new .
 ```
 ## Acesso ao Aplicativo Symfony
 
-- Após os contêineres estarem em execução e o app criado, você poderá acessar o aplicativo Symfony no seu navegador através do endereço http://localhost:8080.
+Após os contêineres estarem em execução e o app criado, você poderá acessar o aplicativo Symfony no seu navegador através do endereço http://localhost:8080.
 
 ## Estrutura do Projeto
 
-- O projeto é composto por dois serviços no arquivo docker-compose.yml:
+ O projeto é composto por dois serviços no arquivo docker-compose.yml:
 
-1. Serviço PHP
+Serviço PHP
 
 Container Name: php
 Porta do host mapeada: 9000
 Volume mapeado: ./app:/var/www/symfony_docker
 Extensões PHP instaladas: intl, opcache, pdo, pdo_mysql, zip, apcu
 
-2. Serviço Nginx
+Serviço Nginx
 
 Container Name: nginx
 Imagem utilizada: nginx:stable-alpine
 Porta do host mapeada: 8080
 Volumes mapeados: ./app:/var/www/symfony_docker, ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 Dependências: Dependente do serviço PHP para garantir a ordem correta de inicialização
+
+## GitHub Actions (CI)
+
+O projeto utiliza o GitHub Actions para automatizar o processo de construção e envio das imagens Docker para o Docker Hub. O arquivo `ci.yml` na pasta `.github/workflows/` contém o fluxo de trabalho que é acionado automaticamente sempre que ocorre um push na branch `main`.
+
+Para que o GitHub Actions funcione corretamente, você precisa configurar as seguintes variáveis de ambiente em "Settings" -> "Secrets" -> "New repository secret":
+
+- `DOCKERHUB_USERNAME`: Seu nome de usuário no Docker Hub.
+- `DOCKERHUB_TOKEN`: Seu token de acesso do Docker Hub.
+
+Após configurar as variáveis de ambiente, o GitHub Actions fará o build das imagens e enviará para o Docker Hub sempre que você fizer um push na branch `main`.
 
 ## Contribuindo
 
