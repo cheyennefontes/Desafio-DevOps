@@ -1,4 +1,4 @@
-# Projeto Symfony Docker
+# Projeto PHP Symfony Docker
 
 Este repositório contém o código e as configurações para um projeto de aplicação back-end com Symfony, utilizando Docker para facilitar o ambiente de desenvolvimento e implantação. 
 
